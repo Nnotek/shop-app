@@ -11,9 +11,9 @@ export default function Page() {
             <h1 className='text-2xl font-semibold font-serif'>Your Cart</h1>
             {cart.length ? (
                 <>
-                    {cart.map((item) => {
+                    {cart.map((item, index) => {
                         return (
-                            <article>
+                            <article key={index}>
                                 <h1>Item</h1>
                             </article>
                         );

@@ -12,7 +12,7 @@ export default function Home() {
         <main className='flex h-fit flex-col items-center justify-between p-0 bg-white'>
             <section className='overflow-hidden w-[465px] h-fit flex items-center justify-center'>
                 {photos.map((fileName, index) => {
-                    return <Image width={465} height={581.25} alt={`Carousel image ${index}`} src={fileName} />;
+                    return <Image key={index} width={465} height={581.25} alt={`Carousel image ${index}`} src={fileName} />;
                 })}
             </section>
         </main>
