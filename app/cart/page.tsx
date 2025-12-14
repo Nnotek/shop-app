@@ -4,7 +4,7 @@ import React, { useContext } from 'react';
 import { ShopContext } from '../context/shopContext';
 import Link from 'next/link';
 
-export default function page() {
+export default function Page() {
     const { cart } = useContext(ShopContext);
     return (
         <section className='px-[30px] pb-[60px]'>

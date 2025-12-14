@@ -60,7 +60,7 @@ export default function Page({ params }: { params: { id: string } }) {
                 <h1 className='text-[50px] font-extrabold italic'>FTB</h1>
                 <h1 className='text-[30px] font-serif font-bold'>{selectedItem.title}</h1>
                 <h1 className='text-[30px] font-serif mt-5'>$ {selectedItem.price}</h1>
-                <select className='mt-3 px-2 py-3 border border-black bg-white rounded-sm w-fit'>
+                <select title='Size selector' className='mt-3 px-2 py-3 border border-black bg-white rounded-sm w-fit'>
                     <option>Small</option>
                     <option>Medium</option>
                     <option>Large</option>
