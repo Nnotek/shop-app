@@ -1,17 +1,19 @@
 'use client';
 
-import { objectDataType } from '@/types/types';
+import { ShopContext } from '@/app/context/shopContext';
+import { shopItemDataType } from '@/types/types';
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 export default function Page({ params }: { params: { id: string } }) {
+    const { addItemToCart } = useContext(ShopContext);
     const [selectedImage, setSelectedImage] = useState({
         src: '',
         alt: '',
     });
-    const [modalOpen, setModalOpen] = useState(false);
+    const [selectedSize, setSelectedSize] = useState('');
 
-    const objectData: objectDataType = {
+    const objectData: shopItemDataType = {
         '1': {
             title: 'MADE IN HELL LEATHER PUFFER COAT (BLACK)',
             price: '168.00',
@@ -21,6 +23,17 @@ export default function Page({ params }: { params: { id: string } }) {
             ],
             details:
                 'FAUX LEATHER LONG PUFFER COAT WITH APPLIQUÉ AMERICAN FLAG AND LETTERS, FRONT WELT POCKET, POUCH POCKETS, FAUX SATIN LINING AND HIDDEN RIBBED CUFFS.',
+            size: ['Small', 'Medium', 'Large', 'X-Large', 'XX-Large', 'XXX-Large'],
+        },
+        '2': {
+            title: 'Fucking shit',
+            price: '67.00',
+            images: [
+                { src: '/leather_puffer/Leather_Puffer_Large_Front.png', alt: 'front of jacket' },
+                { src: '/leather_puffer/Leather_Puffer_Large_Back.png', alt: 'back of jacket' },
+            ],
+            details: 'Ass',
+            size: ['Small', 'Medium', 'Large', 'X-Large', 'XX-Large', 'XXX-Large'],
         },
     };
 
@@ -68,7 +81,18 @@ export default function Page({ params }: { params: { id: string } }) {
                     <option>XX-Large</option>
                     <option>XXX-Large</option>
                 </select>
-                <button className='bg-black rounded-sm w-fit px-5 py-3 text-white font-serif mt-4 text-[15px]'>
+                <button
+                    className='bg-black rounded-sm w-fit px-5 py-3 text-white font-serif mt-4 text-[15px]'
+                    onClick={() =>
+                        addItemToCart({
+                            id: params.id,
+                            title: selectedItem.title,
+                            price: Number(selectedItem.price),
+                            size: selectedSize,
+                            image: selectedItem.images[0],
+                        })
+                    }
+                >
                     ADD TO CART
                 </button>
                 <p className='text-[16px] mt-7 font-serif font-extralight'>{selectedItem.details}</p>

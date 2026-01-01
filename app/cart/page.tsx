@@ -2,10 +2,12 @@
 
 import React, { useContext } from 'react';
 import { ShopContext } from '../context/shopContext';
+import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Page() {
     const { cart } = useContext(ShopContext);
+
     return (
         <section className='px-[30px] pb-[60px]'>
             <h1 className='text-2xl font-semibold font-serif'>Your Cart</h1>
@@ -13,8 +15,9 @@ export default function Page() {
                 <>
                     {cart.map((item, index) => {
                         return (
-                            <article key={index}>
-                                <h1>Item</h1>
+                            <article key={index} className='w-full h-full'>
+                                <h1>{item.title}</h1>
+                                <Image alt={item.image.alt} src={item.image.src} width={200} height={200} />
                             </article>
                         );
                     })}
