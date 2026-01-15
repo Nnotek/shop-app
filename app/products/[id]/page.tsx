@@ -73,13 +73,12 @@ export default function Page({ params }: { params: { id: string } }) {
                 <h1 className='text-[50px] font-extrabold italic'>FTB</h1>
                 <h1 className='text-[30px] font-serif font-bold'>{selectedItem.title}</h1>
                 <h1 className='text-[30px] font-serif mt-5'>$ {selectedItem.price}</h1>
-                <select title='Size selector' className='mt-3 px-2 py-3 border border-black bg-white rounded-sm w-fit'>
-                    <option>Small</option>
-                    <option>Medium</option>
-                    <option>Large</option>
-                    <option>X-Large</option>
-                    <option>XX-Large</option>
-                    <option>XXX-Large</option>
+                <select title="Size selector" className="mt-3 px-2 py-3 border border-black bg-white rounded-sm w-fit" 
+                value={selectedSize} onChange={(e) => setSelectedSize(e.target.value)}>
+                    <option value="" disabled>Select Size</option>
+                    {selectedItem.size.map((sizeOption, index) => (
+                        <option key={index} value={sizeOption}>{sizeOption}</option>
+                    ))}
                 </select>
                 <button
                     className='bg-black rounded-sm w-fit px-5 py-3 text-white font-serif mt-4 text-[15px]'
